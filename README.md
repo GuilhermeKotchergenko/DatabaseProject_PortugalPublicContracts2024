@@ -4,7 +4,7 @@ Aplicação Python demonstrando o acesso à base de dados de Contratos Públicos
 
 ## Sumário
 
-**Autoria:** Projeto de Base de Dados - FCUP
+**Autoria:** Felipe, Guilherme Batista, Telma Freitas
 
 Aplicação Python/Flask para consulta e pesquisa de contratos públicos portugueses.
 
