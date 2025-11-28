@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Pesquisar Contratos{% endblock %}
+
+{% block content %}
+<h2>Pesquisar Contratos</h2>
+
+<div class="search-form">
+    <form method="GET" action="{{ url_for('contract_search') }}">
+        <input type="text" name="q" placeholder="Pesquisar por objeto ou entidade..." value="{{ query if query else '' }}">
+        <button type="submit">Pesquisar</button>
+    </form>
+</div>
+
+{% if contracts %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Objeto</th>
+            <th>Entidade</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contract in contracts %}
+        <tr>
+            <td><a href="{{ url_for('contract', id=contract.id) }}">{{ contract.id }}</a></td>
+            <td>{{ contract.objeto }}</td>
+            <td>{{ contract.entidade }}</td>
+            <td>{{ contract.valor }} €</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% elif query %}
+<p>Nenhum resultado encontrado para "{{ query }}".</p>
+{% endif %}
+{% endblock %}

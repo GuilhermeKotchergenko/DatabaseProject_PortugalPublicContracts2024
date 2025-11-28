@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Contratos{% endblock %}
+
+{% block content %}
+<h2>Lista de Contratos</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Objeto</th>
+            <th>Entidade Adjudicante</th>
+            <th>Valor</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contract in contracts %}
+        <tr>
+            <td><a href="{{ url_for('contract', id=contract.id) }}">{{ contract.id }}</a></td>
+            <td>{{ contract.objeto }}</td>
+            <td>{{ contract.entidade }}</td>
+            <td>{{ contract.valor }} €</td>
+            <td>{{ contract.data }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Nenhum contrato encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

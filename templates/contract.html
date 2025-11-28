@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Contrato {{ contract.id }}{% endblock %}
+
+{% block content %}
+<h2>Detalhes do Contrato</h2>
+
+<div class="contract-details">
+    <p><strong>ID:</strong> {{ contract.id }}</p>
+    <p><strong>Objeto:</strong> {{ contract.objeto }}</p>
+    <p><strong>Entidade Adjudicante:</strong> {{ contract.entidade_adjudicante }}</p>
+    <p><strong>Entidade Adjudicatária:</strong> {{ contract.entidade_adjudicataria }}</p>
+    <p><strong>Valor:</strong> {{ contract.valor }} €</p>
+    <p><strong>Data de Publicação:</strong> {{ contract.data_publicacao }}</p>
+    <p><strong>Tipo de Procedimento:</strong> {{ contract.tipo_procedimento }}</p>
+</div>
+
+<a href="{{ url_for('contract_list') }}">← Voltar à lista</a>
+{% endblock %}

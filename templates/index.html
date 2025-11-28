@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Início - Contratos Públicos{% endblock %}
+
+{% block content %}
+<h2>Bem-vindo ao Sistema de Contratos Públicos Portugal 2024</h2>
+<p>Este sistema permite consultar e pesquisar contratos públicos portugueses do ano de 2024.</p>
+
+<div class="stats">
+    <h3>Estatísticas</h3>
+    <ul>
+        <li>Total de Contratos: {{ total_contracts if total_contracts else 'N/A' }}</li>
+        <li>Total de Entidades: {{ total_entities if total_entities else 'N/A' }}</li>
+    </ul>
+</div>
+
+{% endblock %}

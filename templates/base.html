@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Contratos Públicos Portugal 2024{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Contratos Públicos Portugal 2024</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('index') }}">Início</a>
+        <a href="{{ url_for('contract_list') }}">Contratos</a>
+        <a href="{{ url_for('entity_list') }}">Entidades</a>
+        <a href="{{ url_for('contract_search') }}">Pesquisar</a>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+<footer>
+    <p>&copy; 2025 - Projeto Base de Dados - FCUP</p>
+
+    <div class="team">
+        <h3>Equipe do Projeto</h3>
+        <ul class="team-list">
+            <li>Felipe</li>
+            <li>Guilherme Batista</li>
+            <li>Telma Freitas</li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>
