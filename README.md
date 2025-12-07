@@ -44,17 +44,18 @@ DatabaseProject_PortugalPublicContracts2024/
 
 ### Python 3 e pip
 
-Deve ter o Python 3 e o gestor de pacotes pip instalado:
-
-```bash
-sudo apt-get install python3 python3-pip
-```
+Para funcionar, deve ter o Python 3 e o gestor de pacotes pip instalados na máquina.
 
 ### Ambiente Virtual
 
-Criar
+Criar (Linux/macOS)
 ```bash
 python3 -m venv venv
+```
+
+Criar (PowerShell)
+```bash
+python -m venv venv
 ```
 
 Ativar (Linux/macOS)
@@ -64,19 +65,39 @@ source venv/bin/activate
 
 Ativar (PowerShell)
 ```bash
-venv\Scripts\Activate
+.\venv\Scripts\activate
 ```
 
 ### Bibliotecas Python
 
+Linux/macOS
 ```bash
 pip install --user Flask
 ```
+PowerShell
 
+```bash
+pip install Flask
+```
 ## Execução
 
-Inicie a aplicação executando `python3 server.py` e interaja com a mesma abrindo uma janela no seu browser com o endereço [http://localhost:9001/](http://localhost:9001/)
+Inicie a aplicação e interaja com a mesma abrindo uma janela no seu browser com o endereço [http://localhost:9001/](http://localhost:9001/)
 
+Linux/macOS
+
+```bash
+`python3 server.py`
+```
+
+PowerShell
+
+```bash
+'python server.py'
+```
+
+
+
+Exemplo:
 ```bash
 $ python3 server.py
 2024-XX-XX XX:XX:XX - INFO - Iniciando servidor...
