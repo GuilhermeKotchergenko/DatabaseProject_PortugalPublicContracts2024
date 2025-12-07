@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Entidade {{ entity.nome }}{% endblock %}
+{% block title %}Entidade {{ entity['designacao'] }}{% endblock %}
 
 {% block content %}
 <h2>Detalhes da Entidade</h2>
 
 <div class="entity-details">
-    <p><strong>ID:</strong> {{ entity.id }}</p>
-    <p><strong>Nome:</strong> {{ entity.nome }}</p>
-    <p><strong>NIF:</strong> {{ entity.nif }}</p>
-    <p><strong>Tipo:</strong> {{ entity.tipo }}</p>
+    <p><strong>NIF:</strong> {{ entity['NIFAdjudicante'] }}</p>
+    <p><strong>Designação:</strong> {{ entity['designacao'] }}</p>
 </div>
 
 <h3>Contratos Associados</h3>
@@ -25,10 +23,10 @@
     <tbody>
         {% for contract in contracts %}
         <tr>
-            <td><a href="{{ url_for('contract', id=contract.id) }}">{{ contract.id }}</a></td>
-            <td>{{ contract.objeto }}</td>
-            <td>{{ contract.valor }} €</td>
-            <td>{{ contract.data }}</td>
+            <td><a href="{{ url_for('contract', id=contract['IdContrato']) }}">{{ contract['IdContrato'] }}</a></td>
+            <td>{{ contract['ObjetivoContrato'] }}</td>
+            <td>{{ contract['preco'] }} €</td>
+            <td>{{ contract['DataPublicacao'] }}</td>
         </tr>
         {% else %}
         <tr>

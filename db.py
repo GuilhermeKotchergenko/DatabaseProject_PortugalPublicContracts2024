@@ -31,38 +31,13 @@ def get_connection():
 
 
 def init_db():
-    """Inicializa a base de dados com as tabelas necessárias."""
+    """Garante que a base de dados existe.
+
+    As tabelas são assumidas como já criadas externamente (script SQL).
+    """
     conn = get_connection()
-    cursor = conn.cursor()
-    
-    # Criar tabela de entidades
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS entidades (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            nif TEXT,
-            tipo TEXT
-        )
-    ''')
-    
-    # Criar tabela de contratos
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS contratos (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            objeto TEXT,
-            entidade_adjudicante TEXT,
-            entidade_adjudicataria TEXT,
-            valor REAL,
-            data_publicacao TEXT,
-            tipo_procedimento TEXT,
-            entidade_id INTEGER,
-            FOREIGN KEY (entidade_id) REFERENCES entidades(id)
-        )
-    ''')
-    
-    conn.commit()
     close_connection(conn)
-    logging.info('Base de dados inicializada com sucesso')
+    logging.info('Base de dados disponível')
 
 
 def close_connection(conn):
@@ -112,22 +87,22 @@ def execute_update(query, params=None):
 # Funções específicas para Contratos
 def get_all_contracts(limit=100):
     """Retorna todos os contratos (com limite)."""
-    query = "SELECT * FROM contratos LIMIT ?"
+    query = "SELECT * FROM CONTRATOS LIMIT ?"
     return execute_query(query, (limit,))
 
 
 def get_contract_by_id(contract_id):
     """Retorna um contrato pelo ID."""
-    query = "SELECT * FROM contratos WHERE id = ?"
+    query = "SELECT * FROM CONTRATOS WHERE IdContrato = ?"
     results = execute_query(query, (contract_id,))
     return results[0] if results else None
 
 
 def search_contracts(search_term):
-    """Pesquisa contratos por objeto ou entidade."""
+    """Pesquisa contratos por objetivo do contrato ou tipo de procedimento."""
     query = """
-        SELECT * FROM contratos 
-        WHERE objeto LIKE ? OR entidade_adjudicante LIKE ?
+        SELECT * FROM CONTRATOS 
+        WHERE ObjetivoContrato LIKE ? OR TipoProcedimento LIKE ?
     """
     term = f'%{search_term}%'
     return execute_query(query, (term, term))
@@ -135,21 +110,21 @@ def search_contracts(search_term):
 
 # Funções específicas para Entidades
 def get_all_entities(limit=100):
-    """Retorna todas as entidades (com limite)."""
-    query = "SELECT * FROM entidades LIMIT ?"
+    """Retorna todas as entidades adjudicantes (com limite)."""
+    query = "SELECT * FROM ADJUDICANTE LIMIT ?"
     return execute_query(query, (limit,))
 
 
 def get_entity_by_id(entity_id):
-    """Retorna uma entidade pelo ID."""
-    query = "SELECT * FROM entidades WHERE id = ?"
+    """Retorna uma entidade pelo NIF do adjudicante."""
+    query = "SELECT * FROM ADJUDICANTE WHERE NIFAdjudicante = ?"
     results = execute_query(query, (entity_id,))
     return results[0] if results else None
 
 
 def get_contracts_by_entity(entity_id):
-    """Retorna contratos associados a uma entidade."""
-    query = "SELECT * FROM contratos WHERE entidade_id = ?"
+    """Retorna contratos associados a um adjudicante (NIFAdjudicante)."""
+    query = "SELECT * FROM CONTRATOS WHERE NIFAdjudicante = ?"
     return execute_query(query, (entity_id,))
 
 
@@ -157,20 +132,20 @@ def get_contracts_by_entity(entity_id):
 def get_total_contracts():
     """Retorna o número total de contratos."""
     try:
-        query = "SELECT COUNT(*) as total FROM contratos"
+        query = "SELECT COUNT(*) as total FROM CONTRATOS"
         result = execute_query(query)
         return result[0]['total'] if result else 0
-    except:
+    except Exception:
         return 0
 
 
 def get_total_entities():
-    """Retorna o número total de entidades."""
+    """Retorna o número total de entidades adjudicantes."""
     try:
-        query = "SELECT COUNT(*) as total FROM entidades"
+        query = "SELECT COUNT(*) as total FROM ADJUDICANTE"
         result = execute_query(query)
         return result[0]['total'] if result else 0
-    except:
+    except Exception:
         return 0
 
 

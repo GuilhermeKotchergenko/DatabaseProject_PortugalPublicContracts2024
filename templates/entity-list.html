@@ -8,19 +8,15 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nome</th>
             <th>NIF</th>
-            <th>Tipo</th>
+            <th>Designação</th>
         </tr>
     </thead>
     <tbody>
         {% for entity in entities %}
         <tr>
-            <td><a href="{{ url_for('entity', id=entity.id) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.nome }}</td>
-            <td>{{ entity.nif }}</td>
-            <td>{{ entity.tipo }}</td>
+            <td><a href="{{ url_for('entity', id=entity['NIFAdjudicante']) }}">{{ entity['NIFAdjudicante'] }}</a></td>
+            <td>{{ entity['designacao'] }}</td>
         </tr>
         {% else %}
         <tr>

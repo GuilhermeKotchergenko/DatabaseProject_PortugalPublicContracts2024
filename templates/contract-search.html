@@ -17,18 +17,18 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Objeto</th>
-            <th>Entidade</th>
-            <th>Valor</th>
+            <th>Objetivo</th>
+            <th>Tipo de Procedimento</th>
+            <th>Preço</th>
         </tr>
     </thead>
     <tbody>
         {% for contract in contracts %}
         <tr>
-            <td><a href="{{ url_for('contract', id=contract.id) }}">{{ contract.id }}</a></td>
-            <td>{{ contract.objeto }}</td>
-            <td>{{ contract.entidade }}</td>
-            <td>{{ contract.valor }} €</td>
+            <td><a href="{{ url_for('contract', id=contract['IdContrato']) }}">{{ contract['IdContrato'] }}</a></td>
+            <td>{{ contract['ObjetivoContrato'] }}</td>
+            <td>{{ contract['TipoProcedimento'] }}</td>
+            <td>{{ contract['preco'] }} €</td>
         </tr>
         {% endfor %}
     </tbody>
