@@ -1,22 +1,29 @@
 # Modelo Relacional:
 
-CONTRATOS(	IdContrato,TipoContrato,TipoProcedimento,ObjetoContrato,DataPublicacao,DataCelebracaoContrato,Preco,PrazoExecucao,Fundamentacao,ProcedimentoCentralizado,DescrAcordoQuadro,idMunicipio→Municipio,CodCpv→Cpv,NIFAdjudicante→Adjudicante)
+CONTRATOS(	IdContrato,TipoProcedimento,ObjetoContrato,DataPublicacao,DataCelebracaoContrato,Preco,PrazoExecucao,Fundamentacao,ProcedimentoCentralizado,DescrAcordoQuadro,NIFAdjudicante→Adjudicante)
 
-Cpv(CodCpv,Designacao)
+TIPOS(ChaveTipo,Designacao)
 
-Adjudicante(NIFAdjudicante,Designacao)
+TIPOCONTRATOS(ChaveTipo→Tipo,IdContrato→Contrato)
 
-Adjudicatario(ChaveAdjudicatario,NIFAdjudicatario,Designacao)
+CPV(CodCpv,Designacao)
 
-Pais(IdPais,NomePais)
+CPVCONTRATOS(CodCpv → Cpv, IdContrato→Contrato)
 
-Distrito(IdDistrito,NomeDistrito,IdPais→Pais )
+ADJUDICANTE(NIFAdjudicante,Designacao)
 
-Municipio(IdMunicipio,NomeMunicipio,IdDistrito→Distrito)
+ADJUDICATARIO(ChaveAdjudicatario,NIFAdjudicatario,Designacao)
 
-LocalizacoesContratos(IdContrato→Contrato,IdMunicipio→Municipio) 
+PAIS(IdPais,NomePais)
 
-ContratosAdjudicatario(ChaveAdjudicatario→Adjudicatario,IdContrato→Contrato)
+DISTRITO(IdDistrito,NomeDistrito)
+
+MUNICIPIO(IdMunicipio,NomeMunicipio)
+
+LOCALIZACAOCONTRATOS(ChaveLocalizacao,IdContrato→Contrato,IdMunicipio→Municipio,IdDistrito→Distrito,IdPais→Pais) 
+
+CONTRATOSADJUDICATARIO(ChaveAdjudicatario→Adjudicatario,IdContrato→Contrato)
+
 
 
 # Código Dbdia:
