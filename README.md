@@ -4,7 +4,7 @@ Aplicação Python demonstrando o acesso à base de dados de Contratos Públicos
 
 ## Sumário
 
-**Autoria:** Felipe Reis, Guilherme Batista, Telma Freitas
+**Autoria:** Felipe, Guilherme Batista, Telma Freitas
 
 Aplicação Python/Flask para consulta e pesquisa de contratos públicos portugueses.
 
@@ -23,10 +23,6 @@ DatabaseProject_PortugalPublicContracts2024/
 │       └── ContratosPublicos2024.tsv
 ├── static/
 │   └── style.css
-├── docs/
-│   ├── relational_model.md
-│   ├── ER Model Diagram.png
-│   └── schema.sql
 ├── templates/
 │   ├── base.html
 │   ├── index.html
@@ -39,11 +35,11 @@ DatabaseProject_PortugalPublicContracts2024/
 ├── db.py
 ├── server.py
 ├── test_db_connection.py
-├── contratos_publicos.db
 ├── .gitignore
 ├── LICENSE.txt
 └── README.md
 ```
+
 ## Instalação de Dependências
 
 ### Python 3 e pip
