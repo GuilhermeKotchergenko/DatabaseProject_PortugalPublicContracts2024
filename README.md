@@ -4,7 +4,7 @@ Aplicação Python demonstrando o acesso à base de dados de Contratos Públicos
 
 ## Sumário
 
-**Autoria:** Felipe, Guilherme Batista, Telma Freitas
+**Autoria:** Felipe Reis, Guilherme Batista, Telma Freitas
 
 Aplicação Python/Flask para consulta e pesquisa de contratos públicos portugueses.
 
