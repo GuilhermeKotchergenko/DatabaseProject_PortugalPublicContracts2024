@@ -23,6 +23,10 @@ DatabaseProject_PortugalPublicContracts2024/
 │       └── ContratosPublicos2024.tsv
 ├── static/
 │   └── style.css
+├── docs/
+│   ├── relational_model.md
+│   ├── ER Model Diagram.png
+│   └── schema.sql
 ├── templates/
 │   ├── base.html
 │   ├── index.html
@@ -35,11 +39,11 @@ DatabaseProject_PortugalPublicContracts2024/
 ├── db.py
 ├── server.py
 ├── test_db_connection.py
+├── contratos_publicos.db
 ├── .gitignore
 ├── LICENSE.txt
 └── README.md
 ```
-
 ## Instalação de Dependências
 
 ### Python 3 e pip
