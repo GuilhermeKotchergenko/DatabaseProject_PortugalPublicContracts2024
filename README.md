@@ -366,7 +366,6 @@ DatabaseProject_PortugalPublicContracts2024/
 │
 └── ⚙️ Configuration
     ├── .gitignore                                 # Arquivos a ignorar no Git
-    └── requirements.txt                           # Dependências Python (se existir)
 ```
 
 ---
