@@ -13,13 +13,13 @@ import sqlite3
 import logging
 import os
 
+
 # Configuração de logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# Caminho absoluto para a base de dados
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, 'contratos_publicos.db')
 
@@ -105,13 +105,13 @@ def get_contract_by_id(contract_id):
 
 
 def search_contracts(search_term):
-    """Pesquisa contratos por objetivo do contrato ou tipo de procedimento."""
+    """Pesquisa contratos por ID, objetivo do contrato ou tipo de procedimento."""
     query = """
         SELECT * FROM CONTRATOS 
-        WHERE ObjetivoContrato LIKE ? OR TipoProcedimento LIKE ?
+        WHERE IdContrato LIKE ? OR ObjetivoContrato LIKE ? OR TipoProcedimento LIKE ?
     """
     term = f'%{search_term}%'
-    return execute_query(query, (term, term))
+    return execute_query(query, (term, term, term))
 
 
 # Funções específicas para Entidades

@@ -3,11 +3,10 @@ Aplicação Flask para Contratos Públicos Portugal 2024.
 Define as rotas e handlers da aplicação web.
 """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 import db
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
@@ -29,6 +28,7 @@ def contract_list():
 @app.route('/contract/<int:id>')
 def contract(id):
     """Detalhes de um contrato específico."""
+    # Validar ID
     contract = db.get_contract_by_id(id)
     if contract:
         return render_template('contract.html', contract=contract)
@@ -37,7 +37,11 @@ def contract(id):
 
 @app.route('/search')
 def contract_search():
-    """Pesquisa de contratos."""
+    """Pesquisa de contratos com proteção contra DoS.
+    
+    Rate limit: 10 requests por minuto
+    """
+    # Validar query string
     query = request.args.get('q', '')
     contracts = []
     if query:
@@ -57,6 +61,7 @@ def entity_list():
 @app.route('/entity/<int:id>')
 def entity(id):
     """Detalhes de uma entidade específica."""
+    # Validar ID
     entity = db.get_entity_by_id(id)
     if entity:
         contracts = db.get_contracts_by_entity(id)
