@@ -1,6 +1,12 @@
 """
 Módulo de conexão e operações com a base de dados.
 Contratos Públicos Portugal 2024
+
+Segurança:
+- Todas as queries utilizam parametrização com placeholders (?)
+- Nomes de tabelas são validados contra lista branca para prevenir SQL injection
+- Identificadores não podem ser parametrizados em SQLite, logo usa-se validação
+- Valores dos usuários são sempre parametrizados, nunca interpolados
 """
 
 import sqlite3
@@ -190,8 +196,9 @@ def get_ex5():
 
 def get_ex6():
     try:
-        query= "select designacao from adjudicante where designacao like '%Saúde%' or Designacao like '%saúde%' order by designacao;"
-        result = execute_query(query)     
+        # Parametrizado: usar LOWER() para case-insensitive e parametrizar o termo
+        query= "SELECT designacao FROM adjudicante WHERE LOWER(designacao) LIKE LOWER(?) ORDER BY designacao"
+        result = execute_query(query, ('%Saúde%',))     
         return result
     except Exception:
         return []
@@ -271,8 +278,24 @@ def get_ex15():
 
 # Generic functions for all tables
 def get_all_from_table(table_name, limit=100):
-    """Retorna todos os registros de uma tabela (com limite)."""
-    query = f"SELECT * FROM {table_name} LIMIT ?"
+    """Retorna todos os registros de uma tabela (com limite).
+    
+    A função valida o nome da tabela para prevenir SQL injection,
+    já que identificadores não podem ser parametrizados em SQLite.
+    """
+    # Lista branca de tabelas permitidas
+    ALLOWED_TABLES = {
+        'CONTRATOS', 'ADJUDICANTE', 'ADJUDICATARIO', 'PAIS', 'DISTRITO',
+        'MUNICIPIO', 'CPV', 'TIPOS', 'LOCALIZACAOCONTRATOS',
+        'CONTRATOSADJUDICATARIO', 'TIPODOCONTRATO', 'CONTRATOSCPV'
+    }
+    
+    # Validar se a tabela está na lista branca
+    if table_name.upper() not in ALLOWED_TABLES:
+        raise ValueError(f"Tabela não autorizada: {table_name}")
+    
+    # Usar o nome da tabela validado
+    query = f"SELECT * FROM {table_name.upper()} LIMIT ?"
     return execute_query(query, (limit,))
 
 
