@@ -83,12 +83,10 @@ O projeto demonstra o processo completo de modelação:
 ### 4. Segurança de Base de Dados
 
 **Proteção contra SQL Injection:**
-- ✅ Parametrização de todas as queries
-- ✅ Lista branca para nomes de tabelas
-- ✅ Validação de entrada
-- ✅ Tratamento de erros apropriado
-
-Ver [SECURITY_FIXES.md](SECURITY_FIXES.md) para detalhes técnicos.
+- Parametrização de todas as queries
+- Lista branca para nomes de tabelas
+- Validação de entrada
+- Tratamento de erros apropriado
 
 ---
 
@@ -239,21 +237,6 @@ venv\Scripts\activate
 pip install Flask
 ```
 
-### Passo 4: Testar Conexão com Base de Dados
-
-```bash
-python3 test_db_connection.py
-```
-
-**Saída esperada:**
-```
-✅ Conectado à base de dados
-✅ Tabelas encontradas: 12
-✅ Total de contratos: 32,000+
-```
-
----
-
 ## 🚀 Uso da Aplicação
 
 ### Iniciar Servidor
@@ -333,14 +316,6 @@ if table_name.upper() not in ALLOWED_TABLES:
 - Validação de tipos de dados
 - Limitação de tamanho de queries
 - Tratamento de exceções apropriado
-
-### Conformidade com Padrões
-
-- ✅ OWASP Top 10 2021 - A03: SQL Injection Prevention
-- ✅ CERT Secure Coding
-- ✅ CWE-89: SQL Injection Prevention
-
-Ver [SECURITY_FIXES.md](SECURITY_FIXES.md) para análise técnica completa.
 
 ---
 
