@@ -43,6 +43,33 @@
             </li>
 
             <li class="nav-item"><a class="nav-link" href="{{ url_for('contract_search') }}">Pesquisar</a></li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="tabelasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tabelas
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="tabelasDropdown">
+                    <li><h6 class="dropdown-header">Principais</h6></li>
+                    <li><a class="dropdown-item" href="{{ url_for('adjudicante_list') }}">Adjudicantes</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('adjudicatario_list') }}">Adjudicatários</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('contratos_list') }}">Contratos</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><h6 class="dropdown-header">Classificações</h6></li>
+                    <li><a class="dropdown-item" href="{{ url_for('tipos_list') }}">Tipos</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('cpv_list') }}">CPV</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><h6 class="dropdown-header">Localização</h6></li>
+                    <li><a class="dropdown-item" href="{{ url_for('pais_list') }}">Países</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('distrito_list') }}">Distritos</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('municipio_list') }}">Municípios</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('localizacao_list') }}">Localização Contratos</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><h6 class="dropdown-header">Relações N:M</h6></li>
+                    <li><a class="dropdown-item" href="{{ url_for('contratos_adjudicatario_list') }}">Contratos-Adjudicatário</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('tipo_contrato_list') }}">Tipo do Contrato</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('contratos_cpv_list') }}">Contratos-CPV</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 

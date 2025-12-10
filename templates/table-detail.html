@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ table_name }} - Detalhes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ table_name }} - Detalhes do Registo</h1>
+    
+    {% if record %}
+        <table class="table table-bordered">
+            <tbody>
+                {% for key in record.keys() %}
+                    <tr>
+                        <th>{{ key }}</th>
+                        <td>{{ record[key] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Registo não encontrado.</p>
+    {% endif %}
+    
+    <a href="/{{ table_name }}/" class="btn btn-secondary">Voltar à Lista</a>
+    <a href="/" class="btn btn-secondary">Página Inicial</a>
+</div>
+{% endblock %}

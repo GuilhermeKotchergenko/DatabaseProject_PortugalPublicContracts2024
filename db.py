@@ -269,5 +269,166 @@ def get_ex15():
         return []
 
 
+# Generic functions for all tables
+def get_all_from_table(table_name, limit=100):
+    """Retorna todos os registros de uma tabela (com limite)."""
+    query = f"SELECT * FROM {table_name} LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+# ADJUDICANTE functions
+def get_all_adjudicantes(limit=100):
+    """Retorna todos os adjudicantes (com limite)."""
+    query = "SELECT * FROM ADJUDICANTE LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_adjudicante_by_id(nif):
+    """Retorna um adjudicante pelo NIF."""
+    query = "SELECT * FROM ADJUDICANTE WHERE NIFAdjudicante = ?"
+    results = execute_query(query, (nif,))
+    return results[0] if results else None
+
+
+# ADJUDICATARIO functions
+def get_all_adjudicatarios(limit=100):
+    """Retorna todos os adjudicatários (com limite)."""
+    query = "SELECT * FROM ADJUDICATARIO LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_adjudicatario_by_id(chave):
+    """Retorna um adjudicatário pela chave."""
+    query = "SELECT * FROM ADJUDICATARIO WHERE ChaveAdjudicatario = ?"
+    results = execute_query(query, (chave,))
+    return results[0] if results else None
+
+
+# PAIS functions
+def get_all_paises(limit=100):
+    """Retorna todos os países (com limite)."""
+    query = "SELECT * FROM PAIS LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_pais_by_id(id_pais):
+    """Retorna um país pelo ID."""
+    query = "SELECT * FROM PAIS WHERE IdPais = ?"
+    results = execute_query(query, (id_pais,))
+    return results[0] if results else None
+
+
+# DISTRITO functions
+def get_all_distritos(limit=100):
+    """Retorna todos os distritos (com limite)."""
+    query = "SELECT * FROM DISTRITO LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_distrito_by_id(id_distrito):
+    """Retorna um distrito pelo ID."""
+    query = "SELECT * FROM DISTRITO WHERE IdDistrito = ?"
+    results = execute_query(query, (id_distrito,))
+    return results[0] if results else None
+
+
+# MUNICIPIO functions
+def get_all_municipios(limit=100):
+    """Retorna todos os municípios (com limite)."""
+    query = "SELECT * FROM MUNICIPIO LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_municipio_by_id(id_municipio):
+    """Retorna um município pelo ID."""
+    query = "SELECT * FROM MUNICIPIO WHERE IdMunicipio = ?"
+    results = execute_query(query, (id_municipio,))
+    return results[0] if results else None
+
+
+# CPV functions
+def get_all_cpvs(limit=100):
+    """Retorna todos os CPVs (com limite)."""
+    query = "SELECT * FROM CPV LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_cpv_by_id(cod_cpv):
+    """Retorna um CPV pelo código."""
+    query = "SELECT * FROM CPV WHERE CodCpv = ?"
+    results = execute_query(query, (cod_cpv,))
+    return results[0] if results else None
+
+
+# TIPOS functions
+def get_all_tipos(limit=100):
+    """Retorna todos os tipos (com limite)."""
+    query = "SELECT * FROM TIPOS LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_tipo_by_id(chave_tipo):
+    """Retorna um tipo pela chave."""
+    query = "SELECT * FROM TIPOS WHERE ChaveTipo = ?"
+    results = execute_query(query, (chave_tipo,))
+    return results[0] if results else None
+
+
+# LOCALIZACAOCONTRATOS functions
+def get_all_localizacoes(limit=100):
+    """Retorna todas as localizações de contratos (com limite)."""
+    query = "SELECT * FROM LOCALIZACAOCONTRATOS LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_localizacao_by_id(chave_localizacao):
+    """Retorna uma localização pela chave."""
+    query = "SELECT * FROM LOCALIZACAOCONTRATOS WHERE ChaveLocalizacao = ?"
+    results = execute_query(query, (chave_localizacao,))
+    return results[0] if results else None
+
+
+# CONTRATOSADJUDICATARIO functions
+def get_all_contratos_adjudicatario(limit=100):
+    """Retorna todos os contratos-adjudicatário (com limite)."""
+    query = "SELECT * FROM CONTRATOSADJUDICATARIO LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_contrato_adjudicatario_by_id(id_contrato, chave_adjudicatario):
+    """Retorna um contrato-adjudicatário pelas chaves compostas."""
+    query = "SELECT * FROM CONTRATOSADJUDICATARIO WHERE IdContrato = ? AND ChaveAdjudicatario = ?"
+    results = execute_query(query, (id_contrato, chave_adjudicatario))
+    return results[0] if results else None
+
+
+# TIPODOCONTRATO functions
+def get_all_tipo_contrato(limit=100):
+    """Retorna todos os tipo-contrato (com limite)."""
+    query = "SELECT * FROM TIPODOCONTRATO LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_tipo_contrato_by_id(id_contrato, chave_tipo):
+    """Retorna um tipo-contrato pelas chaves compostas."""
+    query = "SELECT * FROM TIPODOCONTRATO WHERE IdContrato = ? AND ChaveTipo = ?"
+    results = execute_query(query, (id_contrato, chave_tipo))
+    return results[0] if results else None
+
+
+# CONTRATOSCPV functions
+def get_all_contratos_cpv(limit=100):
+    """Retorna todos os contratos-CPV (com limite)."""
+    query = "SELECT * FROM CONTRATOSCPV LIMIT ?"
+    return execute_query(query, (limit,))
+
+
+def get_contrato_cpv_by_id(id_contrato, cod_cpv):
+    """Retorna um contrato-CPV pelas chaves compostas."""
+    query = "SELECT * FROM CONTRATOSCPV WHERE IdContrato = ? AND CodCpv = ?"
+    results = execute_query(query, (id_contrato, cod_cpv))
+    return results[0] if results else None
+
+
 # Inicializar a base de dados ao importar o módulo
 init_db()

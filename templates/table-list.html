@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ table_name }} - Lista{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ table_name }} - Todos os Registos</h1>
+    
+    {% if records %}
+        <p>Total de registos: {{ records|length }}</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {% for key in records[0].keys() %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        {% for key in record.keys() %}
+                            <td>
+                                {% if pk_field == 'composite' %}
+                                    {% if table_name == 'CONTRATOSADJUDICATARIO' and loop.first %}
+                                        <a href="/{{ table_name }}/{{ record['IdContrato'] }}/{{ record['ChaveAdjudicatario'] }}/">{{ record[key] }}</a>
+                                    {% elif table_name == 'TIPODOCONTRATO' and loop.first %}
+                                        <a href="/{{ table_name }}/{{ record['IdContrato'] }}/{{ record['ChaveTipo'] }}/">{{ record[key] }}</a>
+                                    {% elif table_name == 'CONTRATOSCPV' and loop.first %}
+                                        <a href="/{{ table_name }}/{{ record['IdContrato'] }}/{{ record['CodCpv'] }}/">{{ record[key] }}</a>
+                                    {% else %}
+                                        {{ record[key] }}
+                                    {% endif %}
+                                {% else %}
+                                    {% if loop.first %}
+                                        <a href="/{{ table_name }}/{{ record[pk_field] }}/">{{ record[key] }}</a>
+                                    {% else %}
+                                        {{ record[key] }}
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum registo encontrado.</p>
+    {% endif %}
+    
+    <a href="/" class="btn btn-secondary">Voltar à Página Inicial</a>
+</div>
+{% endblock %}

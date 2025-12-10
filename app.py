@@ -64,6 +64,284 @@ def entity(id):
                              entity=entity, 
                              contracts=contracts)
     return "Entidade não encontrada", 404
+
+
+# Routes for ADJUDICANTE table
+@app.route('/ADJUDICANTE/')
+def adjudicante_list():
+    """Lista todos os adjudicantes."""
+    adjudicantes = db.get_all_adjudicantes()
+    return render_template('table-list.html', 
+                         records=adjudicantes, 
+                         table_name='ADJUDICANTE',
+                         pk_field='NIFAdjudicante',
+                         display_fields=['NIFAdjudicante', 'designacao'])
+
+
+@app.route('/ADJUDICANTE/<int:k>/')
+def adjudicante_detail(k):
+    """Detalhes de um adjudicante específico."""
+    adjudicante = db.get_adjudicante_by_id(k)
+    if adjudicante:
+        return render_template('table-detail.html', 
+                             record=adjudicante,
+                             table_name='ADJUDICANTE')
+    return "Adjudicante não encontrado", 404
+
+
+# Routes for ADJUDICATARIO table
+@app.route('/ADJUDICATARIO/')
+def adjudicatario_list():
+    """Lista todos os adjudicatários."""
+    adjudicatarios = db.get_all_adjudicatarios()
+    return render_template('table-list.html', 
+                         records=adjudicatarios, 
+                         table_name='ADJUDICATARIO',
+                         pk_field='ChaveAdjudicatario',
+                         display_fields=['ChaveAdjudicatario', 'NIFAdjudicatario', 'designacao'])
+
+
+@app.route('/ADJUDICATARIO/<int:k>/')
+def adjudicatario_detail(k):
+    """Detalhes de um adjudicatário específico."""
+    adjudicatario = db.get_adjudicatario_by_id(k)
+    if adjudicatario:
+        return render_template('table-detail.html', 
+                             record=adjudicatario,
+                             table_name='ADJUDICATARIO')
+    return "Adjudicatário não encontrado", 404
+
+
+# Routes for CONTRATOS table
+@app.route('/CONTRATOS/')
+def contratos_list():
+    """Lista todos os contratos."""
+    contratos = db.get_all_contracts()
+    return render_template('table-list.html', 
+                         records=contratos, 
+                         table_name='CONTRATOS',
+                         pk_field='IdContrato',
+                         display_fields=['IdContrato', 'TipoProcedimento', 'ObjetivoContrato', 'DataPublicacao', 'preco'])
+
+
+@app.route('/CONTRATOS/<int:k>/')
+def contratos_detail(k):
+    """Detalhes de um contrato específico."""
+    contrato = db.get_contract_by_id(k)
+    if contrato:
+        return render_template('table-detail.html', 
+                             record=contrato,
+                             table_name='CONTRATOS')
+    return "Contrato não encontrado", 404
+
+
+# Routes for PAIS table
+@app.route('/PAIS/')
+def pais_list():
+    """Lista todos os países."""
+    paises = db.get_all_paises()
+    return render_template('table-list.html', 
+                         records=paises, 
+                         table_name='PAIS',
+                         pk_field='IdPais',
+                         display_fields=['IdPais', 'Designacao'])
+
+
+@app.route('/PAIS/<int:k>/')
+def pais_detail(k):
+    """Detalhes de um país específico."""
+    pais = db.get_pais_by_id(k)
+    if pais:
+        return render_template('table-detail.html', 
+                             record=pais,
+                             table_name='PAIS')
+    return "País não encontrado", 404
+
+
+# Routes for DISTRITO table
+@app.route('/DISTRITO/')
+def distrito_list():
+    """Lista todos os distritos."""
+    distritos = db.get_all_distritos()
+    return render_template('table-list.html', 
+                         records=distritos, 
+                         table_name='DISTRITO',
+                         pk_field='IdDistrito',
+                         display_fields=['IdDistrito', 'NomeDistrito'])
+
+
+@app.route('/DISTRITO/<int:k>/')
+def distrito_detail(k):
+    """Detalhes de um distrito específico."""
+    distrito = db.get_distrito_by_id(k)
+    if distrito:
+        return render_template('table-detail.html', 
+                             record=distrito,
+                             table_name='DISTRITO')
+    return "Distrito não encontrado", 404
+
+
+# Routes for MUNICIPIO table
+@app.route('/MUNICIPIO/')
+def municipio_list():
+    """Lista todos os municípios."""
+    municipios = db.get_all_municipios()
+    return render_template('table-list.html', 
+                         records=municipios, 
+                         table_name='MUNICIPIO',
+                         pk_field='IdMunicipio',
+                         display_fields=['IdMunicipio', 'NomeMunicipio'])
+
+
+@app.route('/MUNICIPIO/<int:k>/')
+def municipio_detail(k):
+    """Detalhes de um município específico."""
+    municipio = db.get_municipio_by_id(k)
+    if municipio:
+        return render_template('table-detail.html', 
+                             record=municipio,
+                             table_name='MUNICIPIO')
+    return "Município não encontrado", 404
+
+
+# Routes for CPV table
+@app.route('/CPV/')
+def cpv_list():
+    """Lista todos os CPVs."""
+    cpvs = db.get_all_cpvs()
+    return render_template('table-list.html', 
+                         records=cpvs, 
+                         table_name='CPV',
+                         pk_field='CodCpv',
+                         display_fields=['CodCpv', 'designacao'])
+
+
+@app.route('/CPV/<string:k>/')
+def cpv_detail(k):
+    """Detalhes de um CPV específico."""
+    cpv = db.get_cpv_by_id(k)
+    if cpv:
+        return render_template('table-detail.html', 
+                             record=cpv,
+                             table_name='CPV')
+    return "CPV não encontrado", 404
+
+
+# Routes for TIPOS table
+@app.route('/TIPOS/')
+def tipos_list():
+    """Lista todos os tipos."""
+    tipos = db.get_all_tipos()
+    return render_template('table-list.html', 
+                         records=tipos, 
+                         table_name='TIPOS',
+                         pk_field='ChaveTipo',
+                         display_fields=['ChaveTipo', 'Tipo'])
+
+
+@app.route('/TIPOS/<int:k>/')
+def tipos_detail(k):
+    """Detalhes de um tipo específico."""
+    tipo = db.get_tipo_by_id(k)
+    if tipo:
+        return render_template('table-detail.html', 
+                             record=tipo,
+                             table_name='TIPOS')
+    return "Tipo não encontrado", 404
+
+
+# Routes for LOCALIZACAOCONTRATOS table
+@app.route('/LOCALIZACAOCONTRATOS/')
+def localizacao_list():
+    """Lista todas as localizações de contratos."""
+    localizacoes = db.get_all_localizacoes()
+    return render_template('table-list.html', 
+                         records=localizacoes, 
+                         table_name='LOCALIZACAOCONTRATOS',
+                         pk_field='ChaveLocalizacao',
+                         display_fields=['ChaveLocalizacao', 'IdContrato', 'IdPais', 'IdDistrito', 'IdMunicipio'])
+
+
+@app.route('/LOCALIZACAOCONTRATOS/<int:k>/')
+def localizacao_detail(k):
+    """Detalhes de uma localização específica."""
+    localizacao = db.get_localizacao_by_id(k)
+    if localizacao:
+        return render_template('table-detail.html', 
+                             record=localizacao,
+                             table_name='LOCALIZACAOCONTRATOS')
+    return "Localização não encontrada", 404
+
+
+# Routes for CONTRATOSADJUDICATARIO table
+@app.route('/CONTRATOSADJUDICATARIO/')
+def contratos_adjudicatario_list():
+    """Lista todos os contratos-adjudicatário."""
+    contratos_adj = db.get_all_contratos_adjudicatario()
+    return render_template('table-list.html', 
+                         records=contratos_adj, 
+                         table_name='CONTRATOSADJUDICATARIO',
+                         pk_field='composite',
+                         display_fields=['IdContrato', 'ChaveAdjudicatario'])
+
+
+@app.route('/CONTRATOSADJUDICATARIO/<int:id_contrato>/<int:chave_adjudicatario>/')
+def contratos_adjudicatario_detail(id_contrato, chave_adjudicatario):
+    """Detalhes de um contrato-adjudicatário específico."""
+    contrato_adj = db.get_contrato_adjudicatario_by_id(id_contrato, chave_adjudicatario)
+    if contrato_adj:
+        return render_template('table-detail.html', 
+                             record=contrato_adj,
+                             table_name='CONTRATOSADJUDICATARIO')
+    return "Relação Contrato-Adjudicatário não encontrada", 404
+
+
+# Routes for TIPODOCONTRATO table
+@app.route('/TIPODOCONTRATO/')
+def tipo_contrato_list():
+    """Lista todos os tipo-contrato."""
+    tipos_contrato = db.get_all_tipo_contrato()
+    return render_template('table-list.html', 
+                         records=tipos_contrato, 
+                         table_name='TIPODOCONTRATO',
+                         pk_field='composite',
+                         display_fields=['IdContrato', 'ChaveTipo'])
+
+
+@app.route('/TIPODOCONTRATO/<int:id_contrato>/<int:chave_tipo>/')
+def tipo_contrato_detail(id_contrato, chave_tipo):
+    """Detalhes de um tipo-contrato específico."""
+    tipo_contrato = db.get_tipo_contrato_by_id(id_contrato, chave_tipo)
+    if tipo_contrato:
+        return render_template('table-detail.html', 
+                             record=tipo_contrato,
+                             table_name='TIPODOCONTRATO')
+    return "Relação Tipo-Contrato não encontrada", 404
+
+
+# Routes for CONTRATOSCPV table
+@app.route('/CONTRATOSCPV/')
+def contratos_cpv_list():
+    """Lista todos os contratos-CPV."""
+    contratos_cpv = db.get_all_contratos_cpv()
+    return render_template('table-list.html', 
+                         records=contratos_cpv, 
+                         table_name='CONTRATOSCPV',
+                         pk_field='composite',
+                         display_fields=['IdContrato', 'CodCpv'])
+
+
+@app.route('/CONTRATOSCPV/<int:id_contrato>/<string:cod_cpv>/')
+def contratos_cpv_detail(id_contrato, cod_cpv):
+    """Detalhes de um contrato-CPV específico."""
+    contrato_cpv = db.get_contrato_cpv_by_id(id_contrato, cod_cpv)
+    if contrato_cpv:
+        return render_template('table-detail.html', 
+                             record=contrato_cpv,
+                             table_name='CONTRATOSCPV')
+    return "Relação Contrato-CPV não encontrada", 404
+
+
 # Mapeamento das perguntas SQL para as funções get_ex*()
 SQL_QUESTIONS = {
     1: ("Pergunta 1: Liste o ID do Contrato, o Preço e o Objetivo do Contrato para todos os contratos que foram celebrados sob o procedimento de 'Consulta Prévia'.", db.get_ex1),
