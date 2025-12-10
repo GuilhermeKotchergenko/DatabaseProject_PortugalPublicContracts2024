@@ -30,7 +30,7 @@ Uma aplicação educacional que demonstra:
 - ✅ Consultas dinâmicas parametrizadas
 - ✅ Interface web para consultas interativas
 
-**Autores:** Felipe, Guilherme Batista, Telma Freitas
+**Autores:** Felipe Reis, Guilherme Batista, Telma Freitas
 
 ---
 
